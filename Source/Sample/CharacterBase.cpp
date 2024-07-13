@@ -25,6 +25,9 @@ void ACharacterBase::BeginPlay()
 	MeleeArea->OnComponentBeginOverlap.AddDynamic(this,
 		&ACharacterBase::OnMeleeAreaOverlapBegin);
 
+	CanAction = true;
+
+	SetMovementSpeed();
 	SetAttackOptions();
 	DisableMeleeTrigger();
 	InitAttackState();
@@ -80,6 +83,12 @@ void ACharacterBase::SetAttackOptions()
 {
 	Params.AddIgnoredActor(this);
 	// 이후 필요에따라 오폭 범위 설정
+}
+
+void ACharacterBase::SetMovementSpeed()
+{
+	MoveComponent = GetCharacterMovement();
+	MoveComponent->MaxWalkSpeed = MoveSpeed;
 }
 
 void ACharacterBase::StandUp()

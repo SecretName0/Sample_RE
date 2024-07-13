@@ -4,6 +4,8 @@
 
 #include "CoreMinimal.h"
 #include "CharacterBase.h"
+#include "Camera/CameraComponent.h"
+#include "GameFramework/SpringArmComponent.h"
 #include "C_PlayableBase.generated.h"
 
 /**
@@ -18,6 +20,8 @@ class SAMPLE_API AC_PlayableBase : public ACharacterBase
 	// Funcs
 
 public:
+	AC_PlayableBase();
+
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
 protected:
@@ -47,6 +51,10 @@ protected:
 
 
 private:
+	UPROPERTY(EditAnywhere, Category = "Components")
+	USpringArmComponent* SpringArm;
 
+	UPROPERTY(EditAnywhere, Category = "Components")
+	UCameraComponent* Camera;
 
 };

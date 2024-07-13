@@ -5,6 +5,7 @@
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
 #include "Components/BoxComponent.h"
+#include "GameFramework/CharacterMovementComponent.h"
 #include "CharacterBase.generated.h"
 
 UCLASS()
@@ -50,6 +51,8 @@ private:
 	void CanActionStateReset();
 
 	void SetAttackOptions();
+
+	void SetMovementSpeed();
 
 	// Attack State Admin ================================================ //
 	void InitAttackState();
@@ -131,6 +134,9 @@ protected:
 	void ChangingParts();
 
 	FCollisionQueryParams Params;
+
+	UPROPERTY(VisibleAnywhere, Category = "Move Component")
+	UCharacterMovementComponent* MoveComponent;
 
 private:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))
