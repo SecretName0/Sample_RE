@@ -16,6 +16,8 @@ ACharacterBase::ACharacterBase()
 		(TEXT("Melee Attack Area"));
 	MeleeArea->SetupAttachment(GetMesh(),
 		TEXT("Melee Attack Area"));
+
+	CanAction = true;
 }
 
 void ACharacterBase::BeginPlay()
@@ -25,12 +27,10 @@ void ACharacterBase::BeginPlay()
 	MeleeArea->OnComponentBeginOverlap.AddDynamic(this,
 		&ACharacterBase::OnMeleeAreaOverlapBegin);
 
-	CanAction = true;
-
-	SetMovementSpeed();
-	SetAttackOptions();
-	DisableMeleeTrigger();
-	InitAttackState();
+	SetMovementSpeed(); // 이동 속도 설정
+	SetAttackOptions(); // 공격 예외 대상 지정
+	DisableMeleeTrigger(); // 근접 공격 트리거 off
+	RecoveryActionState(); // 조작 가능 설정
 }
 
 void ACharacterBase::Tick(float DeltaTime)
@@ -108,6 +108,22 @@ void ACharacterBase::MeleeType_ComboAttack()
 void ACharacterBase::JustMeleeAttack()
 {
 	UE_LOG(LogTemp, Error, TEXT("Melee Call"));
+}
+
+void ACharacterBase::CanNotAction()
+{
+	CanControlCamera = false;
+	CanAction = false;
+	CanAttack = false;
+	CanMelee = false;
+}
+
+void ACharacterBase::RecoveryActionState()
+{
+	CanControlCamera = true;
+	CanAction = true;
+	CanAttack = true;
+	CanMelee = true;
 }
 
 void ACharacterBase::GunType_Fire()

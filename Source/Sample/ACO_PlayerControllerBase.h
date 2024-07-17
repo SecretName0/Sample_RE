@@ -3,14 +3,15 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "CharacterBase.h"
-#include "C_EnemyBase.generated.h"
+#include "GameFramework/PlayerController.h"
+#include "C_PlayableBase.h"
+#include "ACO_PlayerControllerBase.generated.h"
 
 /**
  * 
  */
 UCLASS()
-class SAMPLE_API AC_EnemyBase : public ACharacterBase
+class SAMPLE_API AACO_PlayerControllerBase : public APlayerController
 {
 	GENERATED_BODY()
 	
@@ -18,24 +19,24 @@ class SAMPLE_API AC_EnemyBase : public ACharacterBase
 	// Funcs
 
 public:
-	AC_EnemyBase();
+	AACO_PlayerControllerBase();
 
 protected:
-
+	virtual void BeginPlay() override;
 
 private:
+	
 
 // ----------------------------------------------------------------------- //
 	// Value
 
 public:
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	USceneComponent* FinishPoint;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
+	AC_PlayableBase* OwnerPlayer;
 
 protected:
 
 
 private:
 	
-
 };

@@ -22,20 +22,29 @@ class SAMPLE_API AC_PlayableBase : public ACharacterBase
 public:
 	AC_PlayableBase();
 
+	// 블루 프린트로 이용중이라 테스트 종료 후 필요 없을 시 삭제 무방
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
+
+	UFUNCTION(BlueprintCallable)
+	void MoveForward(float Value);
+	UFUNCTION(BlueprintCallable)
+	void MoveRight(float Value);
+	UFUNCTION(BlueprintCallable)
+	void RotatePitch(float Value);
+	UFUNCTION(BlueprintCallable)
+	void RotateYaw(float Value);
+
+	// 점프키는 설정에 없어 굳이 넣지 않음
+	UFUNCTION(BlueprintCallable)
+	void Attack();
+	UFUNCTION(BlueprintCallable)
+	void MeleeAttack();
 
 protected:
 
 
 private:
-	void MoveForward(float Value);
-	void MoveRight(float Value);
-	void RotatePitch(float Value);
-	void RotateYaw(float Value);
-
-	// 점프키는 설정에 없어 굳이 넣지 않음
-	void Attack();
-	void MeleeAttack();
+	
 
 // ----------------------------------------------------------------------- //
 		// Value

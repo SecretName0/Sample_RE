@@ -51,14 +51,13 @@ void AC_PlayableBase::MoveRight(float Value)
 }
 
 void AC_PlayableBase::RotatePitch(float Value)
-{
-	if (!IsDown)
+{	if(CanControlCamera)
 	AddControllerPitchInput(Value * MouseSensitivity * GetWorld()->DeltaTimeSeconds);
 }
 
 void AC_PlayableBase::RotateYaw(float Value)
 {
-	if (!IsDown)
+	if (CanControlCamera)
 	AddControllerYawInput(Value * MouseSensitivity * GetWorld()->DeltaTimeSeconds);
 }
 
